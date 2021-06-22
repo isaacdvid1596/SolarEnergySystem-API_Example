@@ -10,7 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using SolarEnergySystem.Core.Entities;
+using SolarEnergySystem.Core.Interfaces;
+using SolarEnergySystem.Core.Services;
 using SolarEnergySystem.Infrastructure;
+using SolarEnergySystem.Infrastructure.Repositories;
 
 namespace SolarEnergySystem.API
 {
@@ -28,7 +32,12 @@ namespace SolarEnergySystem.API
         {
             services.AddControllers();
             services.AddDbContext<SolarEnergySystemDatabaseContext>(options => options.UseInMemoryDatabase("SolarEnergy"));
+            services.AddScoped<IPanelService, PanelService>();
+            services.AddScoped<IRepository<Panel, string>, EntityFrameworkRepository<Panel, string>>();
+            services.AddScoped<IElectricityReadingRepository, ElectricityReadingRepository>();
+            services.AddScoped<IPanelRepository, PanelRepository>();
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

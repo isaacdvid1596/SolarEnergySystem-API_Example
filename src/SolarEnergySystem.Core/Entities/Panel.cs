@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SolarEnergySystem.Core.DTO;
 using SolarEnergySystem.Core.Enums;
 
 namespace SolarEnergySystem.Core.Entities

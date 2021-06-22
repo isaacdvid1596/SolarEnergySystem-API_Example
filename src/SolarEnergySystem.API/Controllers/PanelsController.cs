@@ -4,25 +4,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SolarEnergySystem.Core.Entities;
+using SolarEnergySystem.Core.Interfaces;
+using SolarEnergySystem.Core.Services;
 using SolarEnergySystem.Infrastructure;
 
 namespace SolarEnergySystem.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PanelsController : ControllerBase
+    public class PanelsController : BaseApiController
     {
-        private readonly SolarEnergySystemDatabaseContext _context;
+        private readonly IPanelService _panelService;
 
-        public PanelsController(SolarEnergySystemDatabaseContext context)
+        public PanelsController(IPanelService panelService)
         {
-            _context = context;
+            _panelService = panelService;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
-            return Ok(_context.Panel.ToList());
+            var result = _panelService.GetAllPanels();
+            return GetResult(result);
         }
+
+        [HttpPost]
+        public IActionResult Register(string panelId,[FromBody] panel)
+
+
     }
 }

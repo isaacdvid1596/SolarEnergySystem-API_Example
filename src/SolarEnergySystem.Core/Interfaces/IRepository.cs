@@ -6,7 +6,7 @@ using SolarEnergySystem.Core.Entities;
 
 namespace SolarEnergySystem.Core.Interfaces
 {
-    public interface IRepository<TEntity, TKey>
+    public interface IRepository<TEntity,TKey>
     {
         void Add(TEntity entity);
 
